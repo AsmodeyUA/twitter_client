@@ -1,0 +1,25 @@
+# Source this file, do not run it:
+#
+# . bin/develop
+
+PROJECT_ROOT="$( cd "$(dirname "${BASH_SOURCE[0]}")"; cd ..; pwd; )";
+echo "${PROJECT_ROOT}";
+
+(
+    set -xe;
+
+    cd "${PROJECT_ROOT}";
+
+    if [[ ! -d "${PROJECT_ROOT}/venv" ]]; then {
+        python3 -m venv venv;
+    }; fi
+
+    set +x; echo "=== Activating virtualenv";
+    . "${PROJECT_ROOT}/venv/bin/activate";
+    set -x;
+
+    pip3 install -r ./requirements.txt;
+
+)
+
+. "${PROJECT_ROOT}/venv/bin/activate";
